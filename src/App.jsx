@@ -8,8 +8,9 @@ function App() {
 
   return (
     <>
-      <div className='text-lg text-center'> 
-      <h1>Shaikh</h1>
+      <div className='text-lg text-center'>
+        <h1>Shaikh</h1>
+        <p> E-commerce web</p>
       </div>
     </>
   )
