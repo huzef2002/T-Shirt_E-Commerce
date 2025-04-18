@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-* body{
+* body {
     background: #000;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h1 , h2{
+    font-family: "Romanesco", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
