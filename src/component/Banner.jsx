@@ -17,23 +17,23 @@ function Banner() {
 
                 {/* Text & Buttons */}
                 <div className="relative z-10 text-white px-8 md:px-20 max-w-2xl">
-                    <p className="uppercase tracking-widest text-sm mb-2 text-gray-300">
+                    <p className="uppercase tracking-widest text-sm mb-2 opacity-60">
                         Fun · Ride · Enjoy
                     </p>
                     <h1 className="text-4xl md:text-5xl mb-2">
                         Life is better when it's on rails
                     </h1>
-                    <h2 className="text-orange-600 text-5xl mb-4">Enjoy</h2>
-                    <p className="text-sm md:text-base text-gray-300 mb-6 leading-relaxed">
+                    <h2 className="text-orange-700 text-5xl mb-4">Enjoy</h2>
+                    <p className="text-sm md:text-base opacity-60 mb-6 leading-relaxed">
                         Nunc sed augue lacus viverra vitae. Convallis posuere morbi leo urna
                         molestie at elementum. Arcu non odio euismod. Arcu risus quis varius.
                     </p>
 
                     <div className="flex gap-4">
-                        <button className="bg-orange-600 hover:bg-orange-700 px-8 py-2 text-white text-sm  uppercase">
+                        <button className="bg-orange-700 hover:bg-orange-700 px-8 py-2 text-white text-sm  uppercase">
                             Shop Now
                         </button>
-                        <button className="border border-orange-600 hover:bg-orange-600 hover:text-white text-sm px-8 py-2 text-white uppercase">
+                        <button className="border border-orange-700 hover:bg-orange-700 hover:text-white text-sm px-8 py-2 text-white uppercase">
                             Know More
                         </button>
                     </div>
