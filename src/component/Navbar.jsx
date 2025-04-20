@@ -23,23 +23,23 @@ const Navbar = () => {
     ];
 
     return (
-        <div className='bg-black/60 flex justify-between items-center h-15 w-full mx-auto px-4 text-white z-50 fixed'>
+        <div className='bg-black/80 flex justify-between items-center h-15 w-full mx-auto px-4 text-white z-50 fixed'>
             {/* Logo */}
-            <h1 className=' text-3xl font-bold text-white'>SU<span className="text-orange-700 text-5xl">P</span>ER.</h1>
+            <h1 className=' text-5xl text-white ms-16'>Luci<span className="text-orange-700 text-5xl">F</span>er.</h1>
 
             {/* Desktop Navigation */}
             <ul className='hidden md:flex'>
                 {navItems.map(item => (
                     <li key={item.id}
-                        className='p-2 text-sm m-2 cursor-pointer duration-300 hover:text-[#00df9a]'>
+                        className='p-2 text-sm m-2 cursor-pointer duration-300 hover:text-orange-700'>
                         {item.text}
                     </li>
                 ))}
             </ul>
 
-            <div className='flex gap-8 mr-3'>
-            <FaShoppingCart size={18} />
-            <FaUser size={18} />
+            <div className='flex gap-8 mr-3 '>
+            <FaShoppingCart className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
+            <FaUser className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
             </div>
 
             {/* Mobile Navigation Icon */}

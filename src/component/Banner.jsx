@@ -18,15 +18,16 @@ function Banner() {
                 {/* Text & Buttons */}
                 <div className="relative z-10 text-white px-8 md:px-20 max-w-2xl">
                     <p className="uppercase tracking-widest text-sm mb-2 opacity-60">
-                        Fun · Ride · Enjoy
+                    STYLE · POWER · COMFORT  
                     </p>
                     <h1 className="text-4xl md:text-5xl mb-2">
-                        Life is better when it's on rails
+                    Unleash the Hero in You
                     </h1>
-                    <h2 className="text-orange-700 text-5xl mb-4">Enjoy</h2>
+                    <h2 className="text-orange-700 text-4xl mb-4">Suit Up. Stand Out.</h2>
                     <p className="text-sm md:text-base opacity-60 mb-6 leading-relaxed">
-                        Nunc sed augue lacus viverra vitae. Convallis posuere morbi leo urna
-                        molestie at elementum. Arcu non odio euismod. Arcu risus quis varius.
+                    Discover a bold collection of premium superhero tees that blend iconic style with all-day comfort. Whether you're team Marvel, DC,
+                     or a pop culture rebel — wear your fandom loud and proud.
+
                     </p>
 
                     <div className="flex gap-4">
@@ -34,7 +35,8 @@ function Banner() {
                             Shop Now
                         </button>
                         <button className="border border-orange-700 hover:bg-orange-700 hover:text-white text-sm px-8 py-2 text-white uppercase">
-                            Know More
+                        EXPLORE COLLECTION
+
                         </button>
                     </div>
                 </div>

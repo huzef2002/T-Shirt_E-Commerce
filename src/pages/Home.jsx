@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../component/Navbar';
 import Banner from '../component/Banner';
 import CardesSection from '../component/CardesSection';
-import Product from '../component/product';
+import MidSlider from '../component/MidSlider';
 
 function Home() {
   return (
@@ -11,7 +11,7 @@ function Home() {
       <hr/>
       <Banner/>
       <CardesSection/>
-      {/* <Product/> */}
+      <MidSlider/>
     </div>
   );
 }
