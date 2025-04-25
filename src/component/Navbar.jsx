@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import { FaUser } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
-
+import { FaUser, FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = () => {
-    // State to manage the navbar's visibility
-    const [nav, setNav] = useState(false);
+    // State to manage whether the user is logged in or not
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // Toggle function to handle the navbar's display
-    const handleNav = () => {
-        setNav(!nav);
-    };
+    // State to manage the profile dashboard's visibility
+    const [isProfileVisible, setIsProfileVisible] = useState(false);
 
     // Array containing navigation items
     const navItems = [
@@ -21,6 +17,12 @@ const Navbar = () => {
         { id: 4, text: 'About' },
         { id: 5, text: 'Contact' },
     ];
+
+    // Toggle function for mobile navigation
+    const [nav, setNav] = useState(false);
+    const handleNav = () => {
+        setNav(!nav);
+    };
 
     return (
         <div className='bg-black/80 flex justify-between items-center h-15 w-full mx-auto px-4 text-white z-50 fixed'>
@@ -37,9 +39,69 @@ const Navbar = () => {
                 ))}
             </ul>
 
-            <div className='flex gap-8 mr-3 '>
-            <FaShoppingCart className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
-            <FaUser className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
+            <div className='flex gap-8 mr-3'>
+                {/* Cart Icon */}
+                <FaShoppingCart className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
+
+                {/* Profile Icon and Dashboard wrapped together */}
+                <div
+                    onMouseEnter={() => setIsProfileVisible(true)} // Show profile on hover
+                    onMouseLeave={() => setIsProfileVisible(false)} // Hide profile on hover out
+                    className="relative"
+                >
+                    {/* Profile Icon */}
+                    <FaUser
+                        className='cursor-pointer duration-300 hover:text-orange-700'
+                        size={18}
+                    />
+
+                    {/* Profile Dashboard (conditionally rendered below the profile icon) */}
+                    {isProfileVisible && (
+                        <div 
+                            className="absolute bg-black text-white shadow-lg p-4 z-50 mt-2 right-0 w-48"
+                        >
+                            {/* Close Button */}
+                            <button 
+                                onClick={() => setIsProfileVisible(false)} 
+                                className="absolute top-2 right-2 text-white text-xl"
+                            >
+                                <AiOutlineClose />
+                            </button>
+
+                            {/* User Status */}
+                            {isLoggedIn ? (
+                                <>
+                                    <h2 className="text-orange-700 text-xl font-bold mt-4">Hi, John Doe</h2>
+                                    <ul className="space-y-4 mt-4">
+                                        <li className="cursor-pointer hover:text-orange-700">My Account</li>
+                                        <li className="cursor-pointer hover:text-orange-700">Wishlist</li>
+                                        <li className="cursor-pointer hover:text-orange-700">Orders</li>
+                                        <li className="cursor-pointer hover:text-orange-700">Wallet</li>
+                                        <li className="cursor-pointer hover:text-orange-700" onClick={() => setIsLoggedIn(false)}>Logout</li>
+                                    </ul>
+                                </>
+                            ) : (
+                                <>
+                                    <h2 className="text-orange-700 text-xl font-bold mt-4">Welcome!</h2>
+                                    <ul className="space-y-4 mt-4">
+                                        <li 
+                                            className="cursor-pointer hover:text-orange-700" 
+                                            onClick={() => setIsLoggedIn(true)}
+                                        >
+                                            Log In
+                                        </li>
+                                        <li 
+                                            className="cursor-pointer hover:text-orange-700"
+                                            onClick={() => alert('Redirecting to Register')}
+                                        >
+                                            Register
+                                        </li>
+                                    </ul>
+                                </>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
 
             {/* Mobile Navigation Icon */}
@@ -62,7 +124,6 @@ const Navbar = () => {
                     </li>
                 ))}
             </ul>
-            
         </div>
     );
 };
