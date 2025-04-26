@@ -1,69 +1,110 @@
 import { initializeApp } from "firebase/app";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithPopup,
-    onAuthStateChanged,
-
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
 } from "firebase/auth";
 
+// Create Firebase context
+const FirebaseContext = createContext(null);
 
-const firebaseContext = createContext(null);
-
+// Firebase config
 const firebaseConfig = {
-    apiKey: "AIzaSyDthQm26TcK-E3xlZ2ZivEnbFEPO7lmrTk",
-    authDomain: "login-form-b6539.firebaseapp.com",
-    projectId: "login-form-b6539",
-    storageBucket: "login-form-b6539.firebasestorage.app",
-    messagingSenderId: "635965871564",
-    appId: "1:635965871564:web:26b086f0fc7d096ab4b969"
+  apiKey: "AIzaSyBlTBATO-pOcgvq87cvCd9UDzkdSQurt5I",
+  authDomain: "t-shirt-ecommerce-8329d.firebaseapp.com",
+  projectId: "t-shirt-ecommerce-8329d",
+  storageBucket: "t-shirt-ecommerce-8329d.appspot.com",
+  messagingSenderId: "454152554445",
+  appId: "1:454152554445:web:277123c9fbb39b9b24e684",
 };
 
+// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-
-export const useFirebase = () => useContext(firebaseContext);
-
 const auth = getAuth(firebaseApp);
-
 const googleProvider = new GoogleAuthProvider();
 
+// Custom hook
+export const useFirebase = () => useContext(FirebaseContext);
 
+// Provider Component
+export const FirebaseProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
 
-export const FirebaseProvider = (props) => {
+  // Listen to login/logout
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUser(user || null);
+    });
+  }, []);
 
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) setUser(user);
-            else setUser(null);
-
-        });
-    }, []);
-
-    const registerWithUseAndEmail = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password)
-            // .then()
-            .catch("Error")
+  // Register new user
+  const registerWithEmailAndPassword = async (email, password) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("User registered:", userCredential.user);
+      return { success: true, user: userCredential.user };
+    } catch (err) {
+      let message = "Registration failed.";
+      if (err.code === "auth/email-already-in-use") {
+        message = "This email is already in use.";
+      } else if (err.code === "auth/weak-password") {
+        message = "Password should be at least 6 characters.";
+      } else if (err.code === "auth/invalid-email") {
+        message = "Invalid email address.";
+      }
+      console.error("Registration Error:", message);
+      return { success: false, message };
     }
+  };
 
-    const logInWithEmailAndPass = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
-            .catch("Error")
+  // Login with email and password
+  const logInWithEmailAndPassword = async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log("User logged in:", userCredential.user);
+      return { success: true, user: userCredential.user };
+    } catch (err) {
+      let message = "Login failed.";
+      if (err.code === "auth/user-not-found") {
+        message = "No account found with this email.";
+      } else if (err.code === "auth/wrong-password") {
+        message = "Incorrect password.";
+      } else if (err.code === "auth/invalid-email") {
+        message = "Invalid email format.";
+      }
+      console.error("Login Error:", message);
+      return { success: false, message };
     }
+  };
 
-    const signInWithGoogle = () => {
-        signInWithPopup(auth, googleProvider)
+  // Login with Google
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      console.log("Google login successful:", result.user);
+      return { success: true, user: result.user };
+    } catch (err) {
+      console.error("Google Sign-In Error:", err.message);
+      return { success: false, message: "Google sign-in failed." };
     }
+  };
 
-    const isLogIn = user ? true : false;
+  const isLoggedIn = !user;
 
-    return (
-        <firebaseContext.Provider value={{ registerWithUseAndEmail, logInWithEmailAndPass, signInWithGoogle, isLogIn }} >
-            {props.children}
-        </firebaseContext.Provider>
-    );
-}
+  return (
+    <FirebaseContext.Provider
+      value={{
+        registerWithEmailAndPassword,
+        logInWithEmailAndPassword,
+        signInWithGoogle,
+        isLoggedIn,
+      }}
+    >
+      {children}
+    </FirebaseContext.Provider>
+  );
+};

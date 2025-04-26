@@ -43,7 +43,7 @@ function Card() {
         },
         {
             id: 6,
-            img: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1744956014/shopping_yiv9rd.webp",
+            img: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1745168789/marvel-miles-morales-urban-hoodie-model-600x800_jx6vqs.jpg",
             name: "spader",
             price: "600₹",
             disc: "this is for summer seson try it feel owsom"
