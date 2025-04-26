@@ -53,7 +53,7 @@ function SignUp() {
       <div  className="p-20 px-28 dark:bg-gray-900 shadow-lg justify-center items-center">
         <form onSubmit={handelSubmit}>
           <h2 className="text-5xl font-bold text-center text-white dark:text-white mb-6">
-            SignUp
+            Register
           </h2>
 
           <div className="space-y-5">
