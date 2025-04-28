@@ -17,9 +17,7 @@ function App() {
         <Route path='/*' element={<Error />}></Route>
      </Routes>
 
-      <div className="App">
-        <ProfileDashboard />
-      </div>
+      
     </>
   );
 }
