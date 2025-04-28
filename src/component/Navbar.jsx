@@ -58,8 +58,9 @@ const Navbar = () => {
                     {/* Profile Dashboard (conditionally rendered below the profile icon) */}
                     {isProfileVisible && (
                         <div 
-                            className="absolute bg-black text-white shadow-lg p-4 z-50 mt-2 right-0 w-48"
-                        >
+                        className="absolute bg-black text-white shadow-lg p-4 z-50 top-full right-0 w-48"
+                    >
+                    
                             {/* Close Button */}
                             <button 
                                 onClick={() => setIsProfileVisible(false)} 
