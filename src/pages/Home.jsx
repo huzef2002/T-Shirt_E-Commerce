@@ -3,6 +3,7 @@ import Navbar from '../component/Navbar';
 import Banner from '../component/Banner';
 import CardesSection from '../component/CardesSection';
 import MidSlider from '../component/MidSlider';
+import Colaps from '../component/Colaps.jsx';
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
       <Banner/>
       <CardesSection/>
       <MidSlider/>
+      <Colaps/>
     </div>
   );
 }

@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { FaUser, FaShoppingCart } from 'react-icons/fa';
+import { useFirebase } from '../Context/Firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+
+    //handel islogged in 
+    const firebase = useFirebase();
+    console.log(firebase);
+
     // State to manage whether the user is logged in or not
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
 
     // State to manage the profile dashboard's visibility
     const [isProfileVisible, setIsProfileVisible] = useState(false);
@@ -70,7 +78,7 @@ const Navbar = () => {
                             </button>
 
                             {/* User Status */}
-                            {isLoggedIn ? (
+                            {firebase.isLoggedIn ? (
                                 <>
                                     <h2 className="text-orange-700 text-xl font-bold mt-4">Hi, John Doe</h2>
                                     <ul className="space-y-4 mt-4">
@@ -78,7 +86,7 @@ const Navbar = () => {
                                         <li className="cursor-pointer hover:text-orange-700">Wishlist</li>
                                         <li className="cursor-pointer hover:text-orange-700">Orders</li>
                                         <li className="cursor-pointer hover:text-orange-700">Wallet</li>
-                                        <li className="cursor-pointer hover:text-orange-700" onClick={() => setIsLoggedIn(false)}>Logout</li>
+                                        {/* <li className="cursor-pointer hover:text-orange-700" onClick={() => setIsLoggedIn(false)}>Logout</li> */}
                                     </ul>
                                 </>
                             ) : (
@@ -87,13 +95,13 @@ const Navbar = () => {
                                     <ul className="space-y-4 mt-4">
                                         <li 
                                             className="cursor-pointer hover:text-orange-700" 
-                                            onClick={() => setIsLoggedIn(true)}
+                                            onClick={() => navigate('/signin')}
                                         >
                                             Log In
                                         </li>
                                         <li 
                                             className="cursor-pointer hover:text-orange-700"
-                                            onClick={() => alert('Redirecting to Register')}
+                                            onClick={() => navigate('/signup')}
                                         >
                                             Register
                                         </li>

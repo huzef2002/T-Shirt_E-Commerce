@@ -93,7 +93,7 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
-  const isLoggedIn = !user;
+  const isLoggedIn = !!user;
 
   return (
     <FirebaseContext.Provider
