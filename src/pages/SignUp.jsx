@@ -22,36 +22,35 @@ function SignUp() {
     setShowPassword(!showPassword);
   };
 
-  const handelSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Handel submit is working");
-    const result = await firebase.registerWithEmailAndPassword(email, password)
-    console.log("acount created", result.user);
-    if(result.success){
-      alert("Registor is Successfull");
+    console.log("Handle submit is working");
+    const result = await firebase.registerWithEmailAndPassword(email, password);
+    console.log("Account created", result.user);
+    if (result.success) {
+      alert("Register is Successful");
       navigate("/signin");
+    } else {
+      alert(result.message);
     }
-      else{
-        alert(result.message)        
-      }
-  }
+  };  
 
-  const loginWithGoogle = async () =>{
-    const  result = await firebase.signInWithGoogle()
-    if(result.success){
-      alert("Registor is Successfull");
+  async function loginWithGoogle() {
+    const result = await firebase.signInWithGoogle();
+    if (result.success) {
+      alert("Registered Successfully");
       navigate("/signin");
     }
-      else{
-        alert(result.message)        
-      }
-  
+    else {
+      alert(result.message);
+    }
+
   }
 
   return (
     <div className=" min-h-screen dark:bg-black px-4 grid grid-cols-1 md:grid-cols-2">
       <div  className="p-20 px-28 dark:bg-gray-900 shadow-lg justify-center items-center">
-        <form onSubmit={handelSubmit}>
+        <form onSubmit={handleSubmit}>
           <h2 className="text-5xl font-bold text-center text-white dark:text-white mb-6">
             Register
           </h2>
