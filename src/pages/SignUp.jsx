@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { CgEyeAlt } from "react-icons/cg";
 import { VscEyeClosed } from "react-icons/vsc";
 import { FcGoogle } from "react-icons/fc";
 import { useFirebase } from '../Context/Firebase';
 import { useNavigate } from "react-router-dom";
 
-
 function SignUp() {
-
   const firebase = useFirebase();
   const navigate = useNavigate();
-
-  // console.log(firebase);
 
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
@@ -19,67 +15,39 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const getErrorMessage = (code) => {
-    switch (code) {
-      case 'auth/email-already-in-use':
-        return 'This email is already registered.';
-      case 'auth/invalid-email':
-        return 'Please enter a valid email address.';
-      case 'auth/weak-password':
-        return 'Password must be at least 6 characters.';
-      default:
-        return 'Something went wrong. Please try again.';
-    }
-  };
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
-  
-    try {
-      const result = await firebase.registerWithEmailAndPassword(email, password);
+    setLoading(true);
+
+    const result = await firebase.registerWithEmailAndPassword(email, password);
+    if (result?.user) {
       await result.user.updateProfile({ displayName: username });
-      
-      alert("Registered Successfully");
-      navigate("/signin");
-    } catch (error) {
-      console.error(error);
-      console.log("Firebase Error Code:", error.code); // Add this line to inspect the error
-      const message = error.code ? getErrorMessage(error.code) : "An unexpected error occurred.";
-      alert(message);
     }
-    
-     finally {
-      setLoading(false); // Stop loading whether success or error
-    }
+
+    setLoading(false);
+    navigate("/signIn");
   };
-  
-      
-  async function loginWithGoogle() {
+
+  const loginWithGoogle = async () => {
     const result = await firebase.signInWithGoogle();
     if (result.success) {
-      alert("Registered Successfully");
-      navigate("/signin");
+      navigate("/signIn");
     }
-    else {
-      alert(result.message);
-    }
-
-  }
+  };
 
   return (
-    <div className=" min-h-screen dark:bg-black px-4 grid grid-cols-1 md:grid-cols-2">
-      <div  className="p-20 px-28 dark:bg-gray-900 shadow-lg justify-center items-center">
+    <div className="min-h-screen dark:bg-black px-4 grid grid-cols-1 md:grid-cols-2">
+      <div className="p-20 px-28 dark:bg-gray-900 shadow-lg justify-center items-center">
         <form onSubmit={handleSubmit}>
           <h2 className="text-5xl font-bold text-center text-white dark:text-white mb-6">
             Register
           </h2>
 
           <div className="space-y-5">
-            {/* Username */}
             <input
               type="text"
               placeholder="Enter Username"
@@ -98,7 +66,6 @@ function SignUp() {
               className="w-full px-4 py-2 bg-white/15 border-orange-700 text-white focus:ring-1 focus:ring-orange-700 focus:outline-none"
             />
 
-            {/* Password */}
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -117,27 +84,36 @@ function SignUp() {
               </button>
             </div>
 
-            {/* Login Button */}
-            <button type="submit" disabled={loading} className="w-full py-2 bg-orange-700 hover:bg-black hover:text-orange-700 border-orange-700 border text-white font-medium transition duration-200 disabled:opacity-50">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-2 bg-orange-700 hover:bg-black hover:text-orange-700 border-orange-700 border text-white font-medium transition duration-200 disabled:opacity-50"
+            >
               {loading ? "Signing up..." : "Sign Up"}
             </button>
 
-
-            {/* Create Account Button */}
-            <button type='button' onClick={loginWithGoogle} className="w-full py-2 flex items-center justify-center gap-4  bg-orange-700 hover:bg-black hover:text-orange-700 border-orange-700 border text-white   font-medium transition duration-200">
-              <span className=''><FcGoogle /></span>Sign Up With Google
+            <button
+              type="button"
+              onClick={loginWithGoogle}
+              className="w-full py-2 flex items-center justify-center gap-4 bg-orange-700 hover:bg-black hover:text-orange-700 border-orange-700 border text-white font-medium transition duration-200"
+            >
+              <span><FcGoogle /></span>Sign Up With Google
             </button>
+
+            <div className="text-center text-white mt-4">
+              Already have an account?{" "}
+              <span
+                onClick={() => navigate("/signIn")}
+                className="text-orange-500 hover:underline cursor-pointer"
+              >
+                Log In
+              </span>
+            </div>
           </div>
         </form>
       </div>
-
-      {/* <div className="relative hidden md:block">
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <img className="object-cover h-screen w-full" src="https://i.pinimg.com/736x/e8/3c/7e/e83c7e9d00d0e0893d8b6f65f003aa2d.jpg" />
-      </div> */}
     </div>
   );
 }
 
 export default SignUp;
-
