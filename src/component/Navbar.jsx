@@ -82,7 +82,7 @@ const Navbar = () => {
                                 <>
                                     <h2 className="text-orange-700 text-xl font-bold mt-4">Hi, John Doe</h2>
                                     <ul className="space-y-4 mt-4">
-                                        <li className="cursor-pointer hover:text-orange-700">My Account</li>
+                                        <li className="cursor-pointer hover:text-orange-700">My Profile</li>
                                         <li className="cursor-pointer hover:text-orange-700">Wishlist</li>
                                         <li className="cursor-pointer hover:text-orange-700">Orders</li>
                                         <li className="cursor-pointer hover:text-orange-700">Wallet</li>

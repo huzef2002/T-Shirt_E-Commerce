@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 // Menu items for the sidebar
 const menuItems = [
-  "My Account",
+  "My Profile",
   "Wishlist",
   "Orders",
   "Wallet",
@@ -12,7 +12,7 @@ const menuItems = [
 
 // Content for each section in the dashboard
 const contentMap = {
-  "My Account": <p>This is your account info.</p>,
+  "My Profile": <p>This is your account info.</p>,
   Wishlist: <p>These are your saved t-shirts.</p>,
   Orders: <p>Here’s your order history.</p>,
   Wallet: <p>Your wallet balance and transactions.</p>,
@@ -21,7 +21,7 @@ const contentMap = {
 
 // ProfileDashboard Component
 export default function ProfileDashboard() {
-  const [selected, setSelected] = useState("My Account"); // State to track selected section
+  const [selected, setSelected] = useState("My Profile"); // State to track selected section
   const [userName, setUserName] = useState("John Doe");  // Default username (can be dynamic)
 
   return (
