@@ -17,24 +17,47 @@ function SignUp() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
+  const getErrorMessage = (code) => {
+    switch (code) {
+      case 'auth/email-already-in-use':
+        return 'This email is already registered.';
+      case 'auth/invalid-email':
+        return 'Please enter a valid email address.';
+      case 'auth/weak-password':
+        return 'Password must be at least 6 characters.';
+      default:
+        return 'Something went wrong. Please try again.';
+    }
+  };
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Handle submit is working");
-    const result = await firebase.registerWithEmailAndPassword(email, password);
-    console.log("Account created", result.user);
-    if (result.success) {
-      alert("Register is Successful");
+    setLoading(true); // Start loading
+  
+    try {
+      const result = await firebase.registerWithEmailAndPassword(email, password);
+      await result.user.updateProfile({ displayName: username });
+      
+      alert("Registered Successfully");
       navigate("/signin");
-    } else {
-      alert(result.message);
+    } catch (error) {
+      console.error(error);
+      console.log("Firebase Error Code:", error.code); // Add this line to inspect the error
+      const message = error.code ? getErrorMessage(error.code) : "An unexpected error occurred.";
+      alert(message);
     }
-  };  
-
+    
+     finally {
+      setLoading(false); // Stop loading whether success or error
+    }
+  };
+  
+      
   async function loginWithGoogle() {
     const result = await firebase.signInWithGoogle();
     if (result.success) {
@@ -95,9 +118,10 @@ function SignUp() {
             </div>
 
             {/* Login Button */}
-            <button type='submit' className="w-full py-2  bg-orange-700 hover:bg-black hover:text-orange-700 border-orange-700 border text-white   font-medium transition duration-200">
-              Sign Up
+            <button type="submit" disabled={loading} className="w-full py-2 bg-orange-700 hover:bg-black hover:text-orange-700 border-orange-700 border text-white font-medium transition duration-200 disabled:opacity-50">
+              {loading ? "Signing up..." : "Sign Up"}
             </button>
+
 
             {/* Create Account Button */}
             <button type='button' onClick={loginWithGoogle} className="w-full py-2 flex items-center justify-center gap-4  bg-orange-700 hover:bg-black hover:text-orange-700 border-orange-700 border text-white   font-medium transition duration-200">
