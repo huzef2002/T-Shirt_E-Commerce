@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import { FaUser, FaShoppingCart } from 'react-icons/fa';
+import { FaUser, FaShoppingCart, FaHeart, FaSearch  } from 'react-icons/fa';
 import { useFirebase } from '../Context/Firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,7 +40,25 @@ const Navbar = () => {
                 ))}
             </ul>
 
-            <div className='flex gap-8 mr-3'>
+
+            <div className="relative">
+                    <input
+                        type="text"
+                        placeholder="Search Keywords"
+                        required
+                        className="text-sm px-4 py-1 w-64  bg-white/15 border-orange-700 text-white focus:ring-1 focus:ring-orange-700 focus:outline-none"
+                    />
+                    <button type="button" className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white hover:text-gray-500">
+                        <FaSearch size={18} /> 
+                    </button>
+                </div>
+
+            <div className='flex gap-8 mr-16'>
+
+               
+
+                {/* Cart Icon */}
+                <FaHeart className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
                 <FaShoppingCart className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
 
                 <div
@@ -51,7 +69,11 @@ const Navbar = () => {
                     <FaUser className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
 
                     {isProfileVisible && (
-                        <div className="absolute bg-black text-white shadow-lg p-4 z-50 top-full right-0 w-48">
+                        <div
+                            className="absolute bg-black text-white shadow-lg p-4 z-50 top-full right-0 w-48"
+                        >
+
+                            {/* Close Button */}
                             <button
                                 onClick={() => setIsProfileVisible(false)}
                                 className="absolute top-2 right-2 text-white text-xl"
@@ -93,10 +115,16 @@ const Navbar = () => {
                                 <>
                                     <h2 className="text-orange-700 text-xl font-bold mt-4">Welcome!</h2>
                                     <ul className="space-y-4 mt-4">
-                                        <li className="cursor-pointer hover:text-orange-700" onClick={() => navigate('/signin')}>
+                                        <li
+                                            className="cursor-pointer hover:text-orange-700"
+                                            onClick={() => navigate('/signin')}
+                                        >
                                             Log In
                                         </li>
-                                        <li className="cursor-pointer hover:text-orange-700" onClick={() => navigate('/signup')}>
+                                        <li
+                                            className="cursor-pointer hover:text-orange-700"
+                                            onClick={() => navigate('/signup')}
+                                        >
                                             Register
                                         </li>
                                     </ul>
@@ -111,11 +139,12 @@ const Navbar = () => {
                 {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
             </div>
 
-            <ul className={
-                nav
-                    ? 'fixed md:hidden left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500 z-50'
-                    : 'ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%] z-50'
-            }>
+            {/* Mobile Navigation Menu */}
+            <ul className={nav
+                ? 'fixed md:hidden left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500 z-50'
+                : 'ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%] z-50'}>
+
+                {/* Mobile Logo */}
                 <h1 className='w-full text-3xl font-bold text-white m-4'>SU<span className='hover:bg-orange-700'>P</span>ER.</h1>
                 {navItems.map(item => (
                     <li key={item.id} className='z-50 p-4 border-b rounded-xl hover:bg-orange-700 duration-300 hover:text-black cursor-pointer border-gray-600'>
