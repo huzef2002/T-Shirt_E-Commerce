@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useFirebase } from "../Context/Firebase"; 
+import MyProfile from "../pages/MyProfile";
+import Orders from "../pages/Orders";
+import Wishlist from "../pages/Wishlist";
+import Wallet from "../pages/Wallet";
 
-// Menu items for the sidebar
 const menuItems = [
   "My Profile",
   "Wishlist",
@@ -10,18 +14,12 @@ const menuItems = [
   "Logout"
 ];
 
-const contentMap = {
-  "My Profile": <p>This is your account info.</p>,
-  Wishlist: <p>These are your saved t-shirts.</p>,
-  Orders: <p>Here’s your order history.</p>,
-  Wallet: <p>Your wallet balance and transactions.</p>,
-  Logout: <p>You’ve been logged out (simulate action).</p>
-};
-
 export default function ProfileDashboard() {
   const [searchParams] = useSearchParams();
   const [selected, setSelected] = useState("My Profile");
-  const [userName, setUserName] = useState("John Doe");
+
+  const firebase = useFirebase();
+  const user = firebase?.user;
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -29,6 +27,14 @@ export default function ProfileDashboard() {
       setSelected(tab);
     }
   }, [searchParams]);
+
+  const contentMap = {
+    "My Profile": <MyProfile user={user} />,
+    Wishlist: <Wishlist/>,
+    Orders: <Orders/>,
+    Wallet: <Wallet/>,
+    Logout: <p>You’ve been logged out (simulate action).</p>
+  };
 
   return (
     <div className="flex min-h-screen bg-black text-white">
@@ -42,7 +48,9 @@ export default function ProfileDashboard() {
 
       {/* Sidebar */}
       <div className="w-64 bg-gray-950 shadow-lg p-4">
-        <h2 className="text-xl font-bold mb-6 text-orange-500">Hi, {userName}</h2>
+        <h2 className="text-xl font-bold mb-6 text-orange-500">
+          Hi, {user?.displayName || "User"}
+        </h2>
         <ul className="space-y-4">
           {menuItems.map((item) => (
             <li
