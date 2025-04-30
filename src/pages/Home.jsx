@@ -4,6 +4,8 @@ import Banner from '../component/Banner';
 import CardesSection from '../component/CardesSection';
 import MidSlider from '../component/MidSlider';
 import Colaps from '../component/Colaps.jsx';
+import Footer from '../component/Footer.jsx';
+import Order from '../component/Order.jsx';
 
 function Home() {
   return (
@@ -14,6 +16,8 @@ function Home() {
       <CardesSection/>
       <MidSlider/>
       <Colaps/>
+      {/* <Order/> */}
+      <Footer/>
     </div>
   );
 }
