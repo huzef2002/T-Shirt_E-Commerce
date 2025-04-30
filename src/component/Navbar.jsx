@@ -58,7 +58,12 @@ const Navbar = () => {
                
 
                 {/* Cart Icon */}
-                <FaHeart className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
+                <FaHeart
+                  className='cursor-pointer duration-300 hover:text-orange-700'
+                  size={18}
+                  onClick={() => navigate('/profile?tab=Wishlist')}
+                />
+
                 <FaShoppingCart className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
 
                 <div
