@@ -10,6 +10,7 @@ const menuItems = [
   "Logout"
 ];
 
+// Content for each section in the dashboard
 const contentMap = {
   "My Profile": <p>This is your account info.</p>,
   Wishlist: <p>These are your saved t-shirts.</p>,
@@ -31,11 +32,11 @@ export default function ProfileDashboard() {
   }, [searchParams]);
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
-      {/* Content Area */}
+    <div className="flex min-h-screen bg-black text-gray-100">
+      {/* Main content area */}
       <div className="flex-1 p-8">
         <h3 className="text-2xl font-semibold mb-4 text-orange-500">{selected}</h3>
-        <div className="bg-gray-900 p-6 rounded-xl shadow-md">
+        <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800">
           {contentMap[selected]}
         </div>
       </div>
@@ -47,7 +48,7 @@ export default function ProfileDashboard() {
           {menuItems.map((item) => (
             <li
               key={item}
-              className={`cursor-pointer px-4 py-2 rounded-lg ${
+              className={`transition-all duration-200 cursor-pointer px-4 py-2 rounded-lg ${
                 selected === item
                   ? "bg-orange-700 text-white"
                   : "hover:bg-gray-800"
