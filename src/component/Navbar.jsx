@@ -64,9 +64,10 @@ const Navbar = () => {
                 <div
                     onMouseEnter={() => setIsProfileVisible(true)}
                     onMouseLeave={() => setIsProfileVisible(false)}
-                    className="relative"
+                    onClick={() => handleProfileNavigation("My Profile")}
+                    className="relative cursor-pointer"
                 >
-                    <FaUser className='cursor-pointer duration-300 hover:text-orange-700' size={18} />
+                    <FaUser className=' duration-300 hover:text-orange-700' size={18} />
 
                     {isProfileVisible && (
                         <div
@@ -83,7 +84,10 @@ const Navbar = () => {
 
                             {firebase.isLoggedIn ? (
                                 <>
-                                    <h2 className="text-orange-700 text-xl font-bold mt-4">Hi, John Doe</h2>
+                                    <h2 className="text-orange-700 text-xl font-bold mt-4">
+                                     Hi, {firebase.user?.displayName || "User"}
+                                    </h2>
+
                                     <ul className="space-y-4 mt-4">
                                         <li
                                             className="cursor-pointer hover:text-orange-700"
