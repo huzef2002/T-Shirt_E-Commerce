@@ -6,6 +6,7 @@ import MidSlider from '../component/MidSlider';
 import Colaps from '../component/Colaps.jsx';
 import Footer from '../component/Footer.jsx';
 import Order from '../component/Order.jsx';
+import Fandom from '../component/Fandom.jsx';
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       <MidSlider/>
       <Colaps/>
       {/* <Order/> */}
+      <Fandom/>
       <Footer/>
     </div>
   );
