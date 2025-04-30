@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useFirebase } from "../Context/Firebase"; 
+import MyProfile from "../pages/MyProfile";
+import Orders from "../pages/Orders";
+import Wishlist from "../pages/Wishlist";
+import Wallet from "../pages/Wallet";
 
 const menuItems = [
   "My Profile",
@@ -25,19 +29,10 @@ export default function ProfileDashboard() {
   }, [searchParams]);
 
   const contentMap = {
-    "My Profile": (
-      <div className="space-y-4">
-        <h4 className="text-xl font-semibold text-orange-400">Profile Information</h4>
-        <div className="bg-gray-800 p-4 rounded-lg shadow border border-gray-700">
-          <p><span className="text-orange-500">Name:</span> {user?.displayName || "N/A"}</p>
-          <p><span className="text-orange-500">Email:</span> {user?.email || "N/A"}</p>
-          <p><span className="text-orange-500">User ID:</span> {user?.uid || "N/A"}</p>
-        </div>
-      </div>
-    ),
-    Wishlist: <p>These are your saved t-shirts.</p>,
-    Orders: <p>Here’s your order history.</p>,
-    Wallet: <p>Your wallet balance and transactions.</p>,
+    "My Profile": <MyProfile user={user} />,
+    Wishlist: <Wishlist/>,
+    Orders: <Orders/>,
+    Wallet: <Wallet/>,
     Logout: <p>You’ve been logged out (simulate action).</p>
   };
 
