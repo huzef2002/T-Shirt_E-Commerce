@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useFirebase } from "../Context/Firebase"; 
+import { useFirebase } from "../Context/Firebase";
 import MyProfile from "../pages/MyProfile";
 import Orders from "../pages/Orders";
 import Wishlist from "../pages/Wishlist";
 import Wallet from "../pages/Wallet";
 
+// Lucide Icons
+import { User, Heart, ShoppingBag, Wallet as WalletIcon, LogOut } from "lucide-react";
+
 const menuItems = [
-  "My Profile",
-  "Wishlist",
-  "Orders",
-  "Wallet",
-  "Logout"
+  { label: "My Profile", icon: <User size={18} /> },
+  { label: "Wishlist", icon: <Heart size={18} /> },
+  { label: "Orders", icon: <ShoppingBag size={18} /> },
+  { label: "Wallet", icon: <WalletIcon size={18} /> },
+  { label: "Logout", icon: <LogOut size={18} /> },
 ];
 
 export default function ProfileDashboard() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selected, setSelected] = useState("My Profile");
 
   const firebase = useFirebase();
   const user = firebase?.user;
+
+  const contentMap = {
+    "My Profile": <MyProfile user={user} />,
+    Wishlist: <Wishlist />,
+    Orders: <Orders />,
+    Wallet: <Wallet />,
+    Logout: <p>You’ve been logged out (simulate action).</p>,
+  };
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -28,12 +39,9 @@ export default function ProfileDashboard() {
     }
   }, [searchParams]);
 
-  const contentMap = {
-    "My Profile": <MyProfile user={user} />,
-    Wishlist: <Wishlist/>,
-    Orders: <Orders/>,
-    Wallet: <Wallet/>,
-    Logout: <p>You’ve been logged out (simulate action).</p>
+  const handleMenuClick = (label) => {
+    setSelected(label);
+    setSearchParams({ tab: label });
   };
 
   return (
@@ -54,15 +62,16 @@ export default function ProfileDashboard() {
         <ul className="space-y-4">
           {menuItems.map((item) => (
             <li
-              key={item}
-              className={`cursor-pointer px-4 py-2 rounded-lg ${
-                selected === item
+              key={item.label}
+              className={`flex items-center gap-2 cursor-pointer px-4 py-2 rounded-lg ${
+                selected === item.label
                   ? "bg-orange-700 text-white"
                   : "hover:bg-gray-800"
               }`}
-              onClick={() => setSelected(item)}
+              onClick={() => handleMenuClick(item.label)}
             >
-              {item}
+              {item.icon}
+              <span>{item.label}</span>
             </li>
           ))}
         </ul>

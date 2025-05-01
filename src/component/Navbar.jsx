@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import { FaUser, FaShoppingCart, FaHeart, FaSearch  } from 'react-icons/fa';
+import { FaUser, FaShoppingCart, FaHeart, FaSearch, FaWallet, FaShoppingBag } from 'react-icons/fa';
 import { useFirebase } from '../Context/Firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -93,32 +93,31 @@ const Navbar = () => {
                                      Hi, {firebase.user?.displayName || "User"}
                                     </h2>
 
-                                    <ul className="space-y-4 mt-4">
+                                    <ul className="space-y-4 mt-4 text-sm">
                                         <li
-                                            className="cursor-pointer hover:text-orange-700"
-                                            onClick={() => handleProfileNavigation("My Profile")}
-                                        >
-                                            My Profile
+                                            className="cursor-pointer hover:text-orange-700 flex items-center gap-2"
+                                            onClick={() => handleProfileNavigation("My Profile")} >
+                                            <FaUser
+                                              size={18}/> My Profile
                                         </li>
                                         <li
-                                            className="cursor-pointer hover:text-orange-700"
-                                            onClick={() => handleProfileNavigation("Wishlist")}
-                                        >
-                                            Wishlist
+                                            className="cursor-pointer hover:text-orange-700 flex items-center gap-2"
+                                            onClick={() => handleProfileNavigation("Wishlist")}>
+                                            <FaHeart size={14} /> Wishlist
+                                        </li>
+                                        <li 
+                                            className="cursor-pointer hover:text-orange-700 flex items-center gap-2"
+                                            onClick={() => handleProfileNavigation("Orders")}>
+                                            <FaShoppingBag size={14} /> Orders
                                         </li>
                                         <li
-                                            className="cursor-pointer hover:text-orange-700"
-                                            onClick={() => handleProfileNavigation("Orders")}
-                                        >
-                                            Orders
-                                        </li>
-                                        <li
-                                            className="cursor-pointer hover:text-orange-700"
-                                            onClick={() => handleProfileNavigation("Wallet")}
-                                        >
-                                            Wallet
+                                            className="cursor-pointer hover:text-orange-700 flex items-center gap-2"
+                                            onClick={() => handleProfileNavigation("Wallet")}>
+                                            <FaWallet size={14} /> Wallet
+
                                         </li>
                                     </ul>
+
                                 </>
                             ) : (
                                 <>
