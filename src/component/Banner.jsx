@@ -3,9 +3,6 @@ import React from 'react';
 function Banner() {
     return (
         <div>
-
-
-
             <div
                 className="relative h-screen bg-cover bg-center flex items-center"
                 style={{
@@ -18,15 +15,15 @@ function Banner() {
                 {/* Text & Buttons */}
                 <div className="relative z-10 text-white px-8 md:px-20 max-w-2xl">
                     <p className="uppercase tracking-widest text-sm mb-2 opacity-60">
-                    STYLE · POWER · COMFORT  
+                        STYLE · POWER · COMFORT
                     </p>
                     <h1 className="text-4xl md:text-5xl mb-2">
-                    Unleash the Hero in You
+                        Unleash the Hero in You
                     </h1>
                     <h2 className="text-orange-700 text-4xl mb-4">Suit Up. Stand Out.</h2>
                     <p className="text-sm md:text-base opacity-60 mb-6 leading-relaxed">
-                    Discover a bold collection of premium superhero tees that blend iconic style with all-day comfort. Whether you're team Marvel, DC,
-                     or a pop culture rebel — wear your fandom loud and proud.
+                        Discover a bold collection of premium superhero tees that blend iconic style with all-day comfort. Whether you're team Marvel, DC,
+                        or a pop culture rebel — wear your fandom loud and proud.
 
                     </p>
 
@@ -35,16 +32,12 @@ function Banner() {
                             Shop Now
                         </button>
                         <button className="border border-orange-700 hover:bg-orange-700 hover:text-white text-sm px-8 py-2 text-white uppercase">
-                        EXPLORE COLLECTION
+                            EXPLORE COLLECTION
 
                         </button>
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
     );
 }
