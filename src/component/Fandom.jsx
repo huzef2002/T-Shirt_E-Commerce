@@ -53,10 +53,9 @@ function Fandom() {
                 ></div>
 
                 {/* Slider */}
-                <div className="absolute bottom-4 w-full mx-16">
+                <div className="absolute bottom-4 w-full px-4 sm:px-8">
                     <Swiper
                         loop={true}
-                        slidesPerView={4}
                         centeredSlides={true}
                         spaceBetween={20}
                         grabCursor={true}
@@ -65,19 +64,25 @@ function Fandom() {
                             delay: 4000,
                             disableOnInteraction: false,
                         }}
+                        breakpoints={{
+                            640: { slidesPerView: 1 },
+                            768: { slidesPerView: 2 },
+                            1024: { slidesPerView: 3 },
+                            1280: { slidesPerView: 4 },
+                        }}
                         modules={[Pagination, Autoplay]}
                     >
                         {sliderData.map((slide) => (
-                            <SwiperSlide key={slide.id} className="flex flex-col items-center">
+                            <SwiperSlide key={slide.id} className="flex flex-col items-center group">
                                 <img
                                     src={slide.tShirtImg}
-                                    alt="T-shirt"
-                                    className="h-[300px] w-64 object-cover"
+                                    alt={`T-shirt design ${slide.id}`}
+                                    className="h-[300px] w-64  rounded-xl shadow-lg"
                                 />
                                 {slide.logoImg && (
                                     <img
                                         src={slide.logoImg}
-                                        alt="Logo"
+                                        alt={`Logo for design ${slide.id}`}
                                         className="mt-2 w-60 h-32 object-contain"
                                     />
                                 )}
