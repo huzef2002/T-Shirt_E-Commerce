@@ -30,7 +30,7 @@ function Collection() {
     <div className="flex flex-col lg:flex-row p-4 min-h-screen text-white pt-10">
 
       {/* ✅ Filter Sidebar */}
-      <div className="w-full lg:w-1/4 p-4 sticky top-4 h-fit bg-white/10 rounded shadow">
+      <div className="w-full lg:w-1/4 p-4 md:sticky top-4 h-fit bg-white/10 rounded shadow">
         <h2 className="text-xl font-bold mb-4">Filters</h2>
 
         {/* ✅ Product Type (Always Open) */}
@@ -51,14 +51,16 @@ function Collection() {
 
         {/* ✅ Product Category (Always Open) */}
         <div className="mb-6">
-          <h3 className="font-semibold text-lg mb-2">Product Category</h3>
+          <h3 className="font-semibold text-lg mb-2">Supper Heros Category</h3>
           {[
-            "Hand Soap",
-            "Cleaning Sprays",
-            "Laundry",
-            "Dish",
-            "Toilet",
-            "Personal Care",
+            "Spiderman",
+            "Badman",
+            "Spider Man",
+            "Captain America",
+            "Superman",
+            "Hulk",
+            "Marvel",
+            "Iron Man",
           ].map((cat) => (
             <label key={cat} className="flex items-center mb-2 cursor-pointer">
               <input
