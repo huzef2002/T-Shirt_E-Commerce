@@ -5,9 +5,9 @@ import MyProfile from "../pages/MyProfile";
 import Orders from "../pages/Orders";
 import Wishlist from "../pages/Wishlist";
 import Wallet from "../pages/Wallet";
+import { User, Heart, ShoppingBag, Wallet as WalletIcon, LogOut } from "lucide-react";
 
 // Lucide Icons
-import { User, Heart, ShoppingBag, Wallet as WalletIcon, LogOut } from "lucide-react";
 
 const menuItems = [
   { label: "My Profile", icon: <User size={18} /> },

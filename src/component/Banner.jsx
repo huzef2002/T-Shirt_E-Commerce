@@ -1,6 +1,11 @@
-import React from 'react';
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
+
 
 function Banner() {
+
+    const navigate = useNavigate() ;
+
     return (
         <div>
             <div
@@ -31,7 +36,7 @@ function Banner() {
                         <button className="bg-orange-700 hover:bg-orange-700 px-8 py-2 text-white text-sm  uppercase">
                             Shop Now
                         </button>
-                        <button className="border border-orange-700 hover:bg-orange-700 hover:text-white text-sm px-8 py-2 text-white uppercase">
+                        <button onClick={()=>{navigate("/collection")}} className="border border-orange-700 hover:bg-orange-700 hover:text-white text-sm px-8 py-2 text-white uppercase">
                             EXPLORE COLLECTION
 
                         </button>

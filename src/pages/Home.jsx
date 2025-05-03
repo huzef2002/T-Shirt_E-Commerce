@@ -10,7 +10,7 @@ import Fandom from '../component/Fandom.jsx';
 function Home() {
   return (
     <div>
-      <Navbar />
+      
       <hr/>
       <Banner/>
       <CardesSection/>
