@@ -55,7 +55,6 @@ function Collection() {
           {[
             "Spiderman",
             "Badman",
-            "Spider Man",
             "Captain America",
             "Superman",
             "Hulk",

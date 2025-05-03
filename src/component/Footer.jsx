@@ -127,7 +127,7 @@ function Footer() {
                                         <li key={idx}>
                                             <a
                                                 href={el.href}
-                                                className="duration-150 hover:text-gray-400"
+                                                className="duration-150 hover:text-orange-700"
 
                                             >
                                                 {el.name}

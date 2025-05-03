@@ -8,27 +8,27 @@ const sliderData = [
     {
         id: 1,
         tShirtImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1745067846/1711704269_1353206.jpg_mv1lom.webp",
-        logoImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1746039241/avengers-logo-welcome-the-world-mashems-14_uk7h5s.png"
+        logoImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1746039572/Spiderman-Logo-1996_qpjchg.png"
     },
     {
         id: 2,
         tShirtImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1745067749/1727685114_4088267.jpg_kwcl7u.webp",
-        logoImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1746039572/Spiderman-Logo-1996_qpjchg.png"
+        logoImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1746039241/avengers-logo-welcome-the-world-mashems-14_uk7h5s.png"
     },
     {
         id: 3,
-        tShirtImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1745994269/1740578138_5873624_ugevvo.jpg",
-        logoImg: null
+        tShirtImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1745994333/68e6c671-3a07-4b_700464_A_awa617.jpg",
+        logoImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1746303039/402670-removebg-preview_etktrs.png"
     },
     {
         id: 4,
-        tShirtImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1745994311/spider-man-super-suit-t-shirt-india-model-600x800_daxiea.jpg",
-        logoImg: null
+        tShirtImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1745994255/61VKzaQhM7L._AC_UY1100__wipww5.jpg",
+        logoImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1746302619/png-transparent-batman-arkham-city-lockdown-batman-arkham-asylum-batman-arkham-origins-batman-return-to-arkham-batman-arkham-city-emblem-mammal-logo-removebg-preview_mh0e0v.png"
     },
     {
         id: 5,
-        tShirtImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1745994269/1740578138_5873624_ugevvo.jpg",
-        logoImg: null
+        tShirtImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1745994339/71kZpBezQaL._AC_SR462_693__cbutcj.jpg",
+        logoImg: "https://res.cloudinary.com/dzmwclzmr/image/upload/v1746301912/e42b72121ac11b1997e99977b21daf2a-removebg-preview_jgz1fe.png"
     }
 ];
 
